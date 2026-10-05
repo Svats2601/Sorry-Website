@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>I'm Sorry ❤️</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fff5f7;
+      color: #35151d;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       LOADING SCREEN
+    ========================= */
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #16070b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-heart {
+      font-size: 70px;
+      animation: heartbeat 1s infinite;
+    }
+
+    .loader-text {
+      color: white;
+      margin-top: 20px;
+      font-size: 14px;
+      letter-spacing: 3px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.25);
+      }
+    }
+
+    /* =========================
+       MUSIC BUTTON
+    ========================= */
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+
+      width: 50px;
+      height: 50px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.9);
+      color: #e63963;
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+
+      transition: 0.3s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.2), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.15), transparent 30%),
+        linear-gradient(135deg, #ff416c, #ff4b2b);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      width: min(900px, 90%);
+
+      color: white;
+
+      animation: fadeUp 1.5s ease;
+    }
+
+    .small-title {
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 13px;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Dancing Script", cursive;
+
+      font-size: clamp(70px, 13vw, 150px);
+
+      line-height: 0.9;
+
+      margin-bottom: 25px;
+
+      text-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.8;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .hero-button {
+      display: inline-block;
+
+      margin-top: 40px;
+
+      padding: 16px 35px;
+
+      border-radius: 50px;
+
+      background: white;
+      color: #e63963;
+
+      text-decoration: none;
+
+      font-weight: 600;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+      transition: .3s;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    }
+
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
+    .heart {
+      position: absolute;
+
+      bottom: -50px;
+
+      font-size: 20px;
+
+      opacity: .5;
+
+      animation: floatHeart linear infinite;
+
+      pointer-events: none;
+    }
+
+    @keyframes floatHeart {
+
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: .7;
+      }
+
+      90% {
+        opacity: .7;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 100px 20px;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title span {
+      color: #e63963;
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(45px, 7vw, 75px);
+      margin-top: 10px;
+    }
+
+    /* =========================
+       APOLOGY
+    ========================= */
+
+    .apology {
+      background: #fff;
+    }
+
+    .letter {
+      max-width: 800px;
+      margin: auto;
+
+      background: #fffafa;
+
+      padding: clamp(30px, 6vw, 70px);
+
+      border-radius: 25px;
+
+      box-shadow:
+        0 20px 60px rgba(100,20,40,.08);
+
+      position: relative;
+    }
+
+    .letter::before {
+      content: "❤️";
+
+      position: absolute;
+
+      top: -20px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background: white;
+
+      padding: 10px;
+
+      border-radius: 50%;
+    }
+
+    .letter p {
+      font-family: "Dancing Script", cursive;
+
+      font-size: clamp(22px, 3vw, 30px);
+
+      line-height: 1.8;
+
+      margin-bottom: 20px;
+    }
+
+    .signature {
+      text-align: right;
+
+      font-family: "Dancing Script", cursive;
+
+      font-size: 32px;
+
+      color: #e63963;
+    }
+
+    /* =========================
+       MEMORIES
+    ========================= */
+
+    .memories {
+      background: #fff5f7;
+    }
+
+    .memory-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+    .memory-card {
+      background: white;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: 0 15px 40px rgba(100,20,40,.08);
+
+      transition: .4s;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+
+    .memory-card img {
+      width: 100%;
+      height: 260px;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+    .memory-content {
+      padding: 25px;
+    }
+
+    .memory-content h3 {
+      font-family: "Dancing Script", cursive;
+
+      font-size: 30px;
+
+      margin-bottom: 8px;
+    }
+
+    .memory-content p {
+      color: #765963;
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TIMELINE
+    ========================= */
+
+    .timeline-section {
+      background: #fff;
+    }
+
+    .timeline {
+      max-width: 850px;
+      margin: auto;
+
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 0;
+      bottom: 0;
+
+      width: 2px;
+
+      background: #f3b5c2;
+
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      width: 50%;
+
+      padding: 20px 40px;
+
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;
+    }
+
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+
+      background: #e63963;
+
+      border-radius: 50%;
+
+      position: absolute;
+
+      top: 30px;
+      right: -9px;
+
+      box-shadow: 0 0 0 7px #ffe2e8;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -9px;
+    }
+
+    .timeline-box {
+      background: #fff5f7;
+
+      padding: 25px;
+
+      border-radius: 20px;
+    }
+
+    .timeline-box h3 {
+      color: #e63963;
+      margin-bottom: 8px;
+    }
+
+    /* =========================
+       PROMISES
+    ========================= */
+
+    .promises {
+      background: #16070b;
+      color: white;
+    }
+
+    .promise-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+    .promise {
+      text-align: center;
+
+      padding: 40px 25px;
+
+      border: 1px solid rgba(255,255,255,.12);
+
+      border-radius: 20px;
+
+      background: rgba(255,255,255,.04);
+
+      transition: .3s;
+    }
+
+    .promise:hover {
+      background: rgba(255,255,255,.08);
+      transform: translateY(-8px);
+    }
+
+    .promise-icon {
+      font-size: 45px;
+      margin-bottom: 20px;
+    }
+
+    .promise h3 {
+      font-family: "Dancing Script", cursive;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .promise p {
+      color: #d9c5ca;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FORGIVENESS
+    ========================= */
+
+    .forgive {
+      min-height: 90vh;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background:
+        radial-gradient(circle, #fff, #ffe9ee);
+    }
+
+    .forgive-box {
+      max-width: 800px;
+    }
+
+    .forgive-box .big-heart {
+      font-size: 90px;
+
+      animation: heartbeat 1.4s infinite;
+    }
+
+    .forgive-box h2 {
+      font-family: "Dancing Script", cursive;
+
+      font-size: clamp(55px, 8vw, 90px);
+
+      color: #e63963;
+
+      margin: 20px 0;
+    }
+
+    .forgive-box p {
+      font-size: 18px;
+      color: #765963;
+
+      line-height: 1.8;
+    }
+
+    .buttons {
+      margin-top: 40px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 20px;
+
+      position: relative;
+
+      min-height: 70px;
+    }
+
+    .yes-btn,
+    .no-btn {
+      border: none;
+
+      padding: 16px 35px;
+
+      border-radius: 50px;
+
+      font-family: inherit;
+
+      font-size: 16px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: .25s;
+    }
+
+    .yes-btn {
+      background: #e63963;
+      color: white;
+
+      box-shadow: 0 10px 30px rgba(230,57,99,.25);
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .no-btn {
+      background: #eee;
+      color: #555;
+
+      position: relative;
+    }
+
+    /* =========================
+       FINAL MESSAGE
+    ========================= */
+
+    #finalMessage {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 5000;
+
+      background: rgba(20,5,10,.95);
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      color: white;
+    }
+
+    #finalMessage.show {
+      display: flex;
+    }
+
+    .final-content {
+      animation: finalPop .8s ease;
+    }
+
+    .final-content .huge-heart {
+      font-size: 120px;
+
+      animation: heartbeat 1s infinite;
+    }
+
+    .final-content h2 {
+      font-family: "Dancing Script", cursive;
+
+      font-size: clamp(60px, 10vw, 110px);
+
+      color: #ff6686;
+    }
+
+    .final-content p {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    .close-final {
+      margin-top: 35px;
+
+      padding: 12px 30px;
+
+      border: 1px solid rgba(255,255,255,.3);
+
+      background: transparent;
+
+      color: white;
+
+      border-radius: 50px;
+
+      cursor: pointer;
+    }
+
+    @keyframes finalPop {
+      from {
+        transform: scale(.5);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #16070b;
+      color: #c9b5ba;
+
+      text-align: center;
+
+      padding: 35px 20px;
+
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: #ff6686;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    /* =========================
+       CONFETTI
+    ========================= */
+
+    .confetti {
+      position: fixed;
+
+      width: 10px;
+      height: 10px;
+
+      top: -20px;
+
+      z-index: 6000;
+
+      pointer-events: none;
+
+      animation: confettiFall 3s linear forwards;
+    }
+
+    @keyframes confettiFall {
+
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+
+        opacity: 0;
+      }
+
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      section {
+        padding: 75px 15px;
+      }
+
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .promise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding-left: 40px;
+        padding-right: 0;
+      }
+
+      .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 1px;
+        right: auto;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .no-btn {
+        position: relative;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADING SCREEN
+  ========================= -->
+
+  <div id="loader">
+    <div class="loader-heart">❤️</div>
+    <div class="loader-text">A LITTLE SOMETHING FOR YOU...</div>
+  </div>
+
+
+  <!-- =========================
+       MUSIC
+       PUT YOUR MP3 FILE IN SAME FOLDER
+       AND CHANGE THE NAME BELOW
+  ========================= -->
+
+  <audio id="bgMusic" loop>
+    <source src="Sorry Website/song.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="musicBtn" aria-label="Music">
+    🎵
+  </button>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <!-- CHANGE THIS -->
+      <div class="small-title">
+        To My Love
+      </div>
+
+      <!-- CHANGE THIS -->
+      <h1>I'm Sorry</h1>
+
+      <!-- CHANGE THIS -->
+      <p>
+        I know I made a mistake.
+        And there are some things that a simple
+        "sorry" cannot explain.
+      </p>
+
+      <a href="#letter" class="hero-button">
+        Read My Heart ❤️
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       APOLOGY LETTER
+  ========================= -->
+
+  <section class="apology" id="letter">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+        <span>From My Heart</span>
+
+        <!-- CHANGE THIS -->
+        <h2>My Apology</h2>
+      </div>
+
+
+      <div class="letter reveal">
+
+        <!-- CHANGE YOUR MESSAGE -->
+
+        <p>
+          My love,
+        </p>
+
+        <p>
+          I know that I hurt you, and honestly,
+          knowing that I am the reason behind your
+          sadness hurts me too.
+        </p>
+
+        <p>
+          I don't want to make excuses for what I did.
+          I just want you to know that I genuinely
+          regret it.
+        </p>
+
+        <p>
+          You mean much more to me than my ego,
+          my anger, or any stupid argument.
+        </p>
+
+        <p>
+          I'm not asking you to forget what happened.
+          I'm only asking you to give me a chance
+          to make things right.
+        </p>
+
+        <p>
+          I'm truly sorry. ❤️
+        </p>
+
+        <div class="signature">
+          Yours,<br>
+          <!-- CHANGE THIS -->
+          Your Name
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MEMORIES
+  ========================= -->
+
+  <section class="memories">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+
+        <span>Our Story</span>
+
+        <h2>Beautiful Memories</h2>
+
+      </div>
+
+
+      <div class="memory-grid">
+
+
+        <!-- MEMORY 1 -->
+
+        <div class="memory-card reveal">
+
+          <!-- CHANGE IMAGE -->
+          <img src="IMG3.jpeg" alt="Our memory">
+
+          <div class="memory-content">
+
+            <!-- CHANGE -->
+            <h3>The Beginning</h3>
+
+            <!-- CHANGE -->
+            <p>
+              This is where our beautiful story started.
+              One moment that I will always remember.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEMORY 2 -->
+
+        <div class="memory-card reveal">
+
+          <!-- CHANGE IMAGE -->
+          <img src="IMG2.jpeg" alt="Our memory">
+
+          <div class="memory-content">
+
+            <!-- CHANGE -->
+            <h3>That Day ❤️</h3>
+
+            <!-- CHANGE -->
+            <p>
+              One of those moments where I realized
+              how lucky I am to have you.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEMORY 3 -->
+
+        <div class="memory-card reveal">
+
+          <!-- CHANGE IMAGE -->
+          <img src="IMG1.jpeg" alt="Our memory">
+
+          <div class="memory-content">
+
+            <!-- CHANGE -->
+            <h3>Us</h3>
+
+            <!-- CHANGE -->
+            <p>
+              No matter how many memories we make,
+              I want to keep making them with you.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       TIMELINE
+  ========================= -->
+
+  <section class="timeline-section">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+
+        <span>Our Journey</span>
+
+        <h2>Our Little Story</h2>
+
+      </div>
+
+
+      <div class="timeline">
+
+
+        <!-- TIMELINE ITEM -->
+
+        <div class="timeline-item reveal">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-box">
+
+            <!-- CHANGE -->
+
+            <h3>Day We Met</h3>
+
+            <p>
+              <!-- CHANGE -->
+              Write something special about
+              the first day you met.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-box">
+
+            <!-- CHANGE -->
+
+            <h3>Our First Memory</h3>
+
+            <p>
+              <!-- CHANGE -->
+
+              Write your favorite memory here.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-box">
+
+            <!-- CHANGE -->
+
+            <h3>Something Special</h3>
+
+            <p>
+              <!-- CHANGE -->
+
+              Another beautiful moment
+              you shared together.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-box">
+
+            <!-- CHANGE -->
+
+            <h3>Today</h3>
+
+            <p>
+              <!-- CHANGE -->
+
+              And today, I'm here asking
+              you to forgive me.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROMISES
+  ========================= -->
+
+  <section class="promises">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+
+        <span>From Now On</span>
+
+        <h2>My Promises To You</h2>
+
+      </div>
+
+
+      <div class="promise-grid">
+
+
+        <div class="promise reveal">
+
+          <div class="promise-icon">
+            🫶
+          </div>
+
+          <!-- CHANGE -->
+
+          <h3>I'll Listen</h3>
+
+          <p>
+            I'll listen to you instead of
+            letting my ego speak for me.
+          </p>
+
+        </div>
+
+
+        <div class="promise reveal">
+
+          <div class="promise-icon">
+            ❤️
+          </div>
+
+          <!-- CHANGE -->
+
+          <h3>I'll Respect You</h3>
+
+          <p>
+            I'll always respect your feelings,
+            even when we disagree.
+          </p>
+
+        </div>
+
+
+        <div class="promise reveal">
+
+          <div class="promise-icon">
+            🌹
+          </div>
+
+          <!-- CHANGE -->
+
+          <h3>I'll Do Better</h3>
+
+          <p>
+            Not just today.
+            I'll keep trying to become
+            a better partner for you.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FORGIVENESS
+  ========================= -->
+
+  <section class="forgive">
+
+    <div class="forgive-box reveal">
+
+      <div class="big-heart">
+        ❤️
+      </div>
+
+      <!-- CHANGE -->
+
+      <h2>Will You Forgive Me?</h2>
+
+      <!-- CHANGE -->
+
+      <p>
+        I know I don't deserve an instant answer.
+        But if there's still a little place for me
+        in your heart...
+      </p>
+
+
+      <div class="buttons">
+
+        <button class="yes-btn" id="yesBtn">
+          Yes, I Forgive You ❤️
+        </button>
+
+        <button class="no-btn" id="noBtn">
+          No 😭
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINAL POPUP
+  ========================= -->
+
+  <div id="finalMessage">
+
+    <div class="final-content">
+
+      <div class="huge-heart">
+        ❤️
+      </div>
+
+      <!-- CHANGE -->
+
+      <h2>Thank You!</h2>
+
+      <!-- CHANGE -->
+
+      <p>
+        You have no idea how much this means to me.
+        <br>
+        I promise I'll do better. ❤️
+      </p>
+
+      <button class="close-final" id="closeFinal">
+        Back to our story
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <!-- CHANGE -->
+
+    Made with ❤️ for the most important person in my life.
+
+    <br><br>
+
+    <!-- CHANGE -->
+
+    <strong>Your Name</strong>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+
+        document
+          .getElementById("loader")
+          .classList.add("hidden");
+
+      }, 1200);
+
+    });
+
+
+    /* =========================
+       MUSIC
+    ========================= */
+
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    let musicPlaying = false;
+
+    musicBtn.addEventListener("click", () => {
+
+      if (musicPlaying) {
+
+        music.pause();
+
+        musicBtn.innerHTML = "🎵";
+
+        musicPlaying = false;
+
+      } else {
+
+        music.play()
+          .then(() => {
+
+            musicBtn.innerHTML = "🔊";
+
+            musicPlaying = true;
+
+          })
+          .catch(() => {
+
+            alert(
+              "Please add song.mp3 to the website folder."
+            );
+
+          });
+
+      }
+
+    });
+
+
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
+    const hero = document.querySelector(".hero");
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+
+      heart.innerHTML = [
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "💓"
+      ][Math.floor(Math.random() * 5)];
+
+      heart.style.left =
+        Math.random() * 100 + "%";
+
+      heart.style.animationDuration =
+        (5 + Math.random() * 7) + "s";
+
+      heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+      hero.appendChild(heart);
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 12000);
+
+    }
+
+    setInterval(createHeart, 700);
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const reveals =
+      document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+
+      reveals.forEach(element => {
+
+        const windowHeight =
+          window.innerHeight;
+
+        const elementTop =
+          element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+
+          element.classList.add("active");
+
+        }
+
+      });
+
+    }
+
+    window.addEventListener(
+      "scroll",
+      revealOnScroll
+    );
+
+    revealOnScroll();
+
+
+    /* =========================
+       RUNAWAY NO BUTTON
+    ========================= */
+
+    const noBtn =
+      document.getElementById("noBtn");
+
+    function moveNoButton() {
+
+      const maxX =
+        window.innerWidth - noBtn.offsetWidth - 30;
+
+      const maxY =
+        window.innerHeight - noBtn.offsetHeight - 30;
+
+      const x =
+        Math.max(15, Math.random() * maxX);
+
+      const y =
+        Math.max(15, Math.random() * maxY);
+
+      noBtn.style.position = "fixed";
+
+      noBtn.style.left = x + "px";
+
+      noBtn.style.top = y + "px";
+
+      noBtn.style.zIndex = "4000";
+
+    }
+
+    noBtn.addEventListener(
+      "mouseenter",
+      moveNoButton
+    );
+
+    noBtn.addEventListener(
+      "touchstart",
+      moveNoButton
+    );
+
+
+    /* =========================
+       YES BUTTON
+    ========================= */
+
+    const yesBtn =
+      document.getElementById("yesBtn");
+
+    const finalMessage =
+      document.getElementById("finalMessage");
+
+    yesBtn.addEventListener("click", () => {
+
+      finalMessage.classList.add("show");
+
+      createConfetti();
+
+    });
+
+
+    /* =========================
+       CLOSE FINAL
+    ========================= */
+
+    document
+      .getElementById("closeFinal")
+      .addEventListener("click", () => {
+
+        finalMessage.classList.remove("show");
+
+      });
+
+
+    /* =========================
+       CONFETTI
+    ========================= */
+
+    function createConfetti() {
+
+      const symbols = [
+        "❤️",
+        "💕",
+        "💖",
+        "✨",
+        "💗",
+        "🌹"
+      ];
+
+      for (let i = 0; i < 80; i++) {
+
+        const piece =
+          document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.innerHTML =
+          symbols[
+            Math.floor(
+              Math.random() * symbols.length
+            )
+          ];
+
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+        piece.style.fontSize =
+          (12 + Math.random() * 20) + "px";
+
+        piece.style.animationDuration =
+          (2 + Math.random() * 3) + "s";
+
+        piece.style.animationDelay =
+          Math.random() * .8 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+
+          piece.remove();
+
+        }, 5000);
+
+      }
+
+    }
+
+
+    /* =========================
+       CLICK HEART EFFECT
+    ========================= */
+
+    document.addEventListener("click", (event) => {
+
+      if (
+        event.target.tagName === "BUTTON" ||
+        event.target.tagName === "A"
+      ) {
+        return;
+      }
+
+      const heart =
+        document.createElement("div");
+
+      heart.innerHTML = "❤️";
+
+      heart.style.position = "fixed";
+
+      heart.style.left =
+        event.clientX + "px";
+
+      heart.style.top =
+        event.clientY + "px";
+
+      heart.style.pointerEvents = "none";
+
+      heart.style.zIndex = "9999";
+
+      heart.style.fontSize = "20px";
+
+      heart.style.transition =
+        "all 1s ease";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+
+        heart.style.transform =
+          "translateY(-80px) scale(1.8)";
+
+        heart.style.opacity = "0";
+
+      }, 50);
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 1100);
+
+    });
+
+  </script>
+
+</body>
+</html>
