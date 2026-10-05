@@ -1349,46 +1349,72 @@
     });
 
 
-    /* =========================
-       MUSIC
-    ========================= */
+/* =========================
+   MUSIC PLAYER
+========================= */
 
-    const music = document.getElementById("bgMusic");
-    const musicBtn = document.getElementById("musicBtn");
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-    let musicPlaying = false;
+let musicPlaying = false;
 
-    musicBtn.addEventListener("click", () => {
+musicBtn.addEventListener("click", async () => {
 
-      if (musicPlaying) {
+    try {
 
-        music.pause();
+        if (music.paused) {
 
-        musicBtn.innerHTML = "🎵";
-
-        musicPlaying = false;
-
-      } else {
-
-        music.play()
-          .then(() => {
-
-            musicBtn.innerHTML = "🔊";
+            await music.play();
 
             musicPlaying = true;
 
-          })
-          .catch(() => {
+            musicBtn.innerHTML = "🔊";
+            musicBtn.setAttribute("aria-label", "Pause Music");
 
-            alert(
-              "Please add song.mp3 to the website folder."
-            );
+        } else {
 
-          });
+            music.pause();
 
-      }
+            musicPlaying = false;
 
-    });
+            musicBtn.innerHTML = "🎵";
+            musicBtn.setAttribute("aria-label", "Play Music");
+
+        }
+
+    } catch (error) {
+
+        console.error("Music failed:", error);
+
+        alert(
+            "The music could not be played. Please check that song.mp3 is uploaded to the GitHub repository."
+        );
+
+    }
+
+});
+
+
+/* Reset button when song ends */
+
+music.addEventListener("ended", () => {
+
+    musicPlaying = false;
+
+    musicBtn.innerHTML = "🎵";
+
+});
+
+
+/* Detect loading errors */
+
+music.addEventListener("error", () => {
+
+    console.error(
+        "Could not load song.mp3"
+    );
+
+});
 
 
     /* =========================
